@@ -8,8 +8,9 @@
     "jsx": "preserve",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "types": ["./global"] 
   },
-  "include": ["src"],
+  "include": ["src", "global.d.ts"],  // Incluir global.d.ts
   "exclude": ["node_modules"]
 }

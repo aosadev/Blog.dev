@@ -1,8 +1,11 @@
+// src/types/Post.ts
 export interface Post {
-	id: string;
-	title: string;
-	description: string;
-	publishDate: string;
-	content: string;
+	id: string; 
+	data: {
+	  title: string;
+	  description: string;
+	  publishDate: string;
+	};
+	body: string;
   }
   

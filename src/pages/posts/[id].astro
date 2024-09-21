@@ -1,21 +1,19 @@
 ---
 import { getCollection } from 'astro:content';
 import BlogLayout from '../../layouts/BlogLayout.astro';
+import { Post } from '../../types/Post';  // Importa la interfaz Post
 
 // Obtener todas las rutas estáticas para los posts
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
   return posts.map((post) => ({
-    params: { id: post.id },  // Asegúrate de usar el 'id' del frontmatter
-    props: { post },
+    params: { id: post.id },  // Asegúrate de usar 'id' como el identificador de la ruta
+    props: { post },          // Pasar los datos completos del post como props
   }));
 }
-
-// Prerender la página para que sea estática
 export const prerender = true;
-
 // Obtener los datos del post actual basado en el 'id'
-const { post } = Astro.props;
+const { post }: { post: Post } = Astro.props;  // Asegúrate de especificar el tipo del post
 
 if (!post) {
   throw new Error(`Post no encontrado para el id: ${Astro.params.id}`);
@@ -24,9 +22,9 @@ if (!post) {
 
 <BlogLayout>
   <article class="max-w-3xl mx-auto px-4 py-12">
-    <h1 class="text-4xl font-bold text-gray-800 mb-6">{post.data.title}</h1> <!-- Asegúrate de acceder correctamente al 'title' -->
-    <p class="text-xl text-gray-600 mb-4">{post.data.description}</p> <!-- Asegúrate de acceder correctamente a 'description' -->
-    <small class="text-gray-500 mb-12 block">Publicado el {post.data.publishDate}</small>
-    <div class="prose prose-lg prose-indigo max-w-none" set:html={post.body}></div>
+    <h1 class="text-4xl font-bold text-gray-800 mb-6">{post.data.title}</h1> <!-- Acceder a 'post.data.title' -->
+    <p class="text-xl text-gray-600 mb-4">{post.data.description}</p> <!-- Acceder a 'post.data.description' -->
+    <small class="text-gray-500 mb-12 block">Publicado el {post.data.publishDate}</small> <!-- Acceder a 'post.data.publishDate' -->
+    <div class="prose prose-lg prose-indigo max-w-none" set:html={post.body}></div> <!-- Acceder a 'post.body' -->
   </article>
 </BlogLayout>

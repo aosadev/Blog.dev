@@ -1,5 +1,5 @@
 ---
-id: "2"
+id: "laravel-1"
 title: "Laravel: Mejores Prácticas para la Inyección de Dependencias"
 description: "Descubre cómo utilizar la inyección de dependencias en Laravel para mejorar la testabilidad y flexibilidad de tu código."
 publishDate: "2024-09-22"

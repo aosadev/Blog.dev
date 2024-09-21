@@ -1,5 +1,5 @@
 ---
-id: "1"
+id: "primer-post"
 title: "Mi primer post"
 description: "Este es el primer post de mi nuevo blog en ASTRO"
 publishDate: "2024-09-20"

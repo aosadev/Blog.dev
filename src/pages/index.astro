@@ -1,16 +1,15 @@
 ---
-
+import BlogLayout from '../layouts/BlogLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import Features from '../components/Features.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BlogLayout>
+  <HeroSection 
+  title="Bienvenidos a mi Blog" 
+  subtitle="Este es un espacio donde escribo sobre desarrollo web, tecnología y más." 
+  buttonLabel="Leer más" 
+  backgroundImage="hero-background.webp" 
+/>
+  <Features />
+</BlogLayout>

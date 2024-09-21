@@ -1,0 +1,40 @@
+---
+interface Feature {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+const features: Feature[] = [
+  {
+    title: 'PHP y Frameworks',
+    description: 'Desarrollo con Symfony, Laravel, y Yii.',
+    icon: 'icon-php.svg', // Imagen en /public/assets/icon-php.svg
+  },
+  {
+    title: 'TypeScript',
+    description: 'Desarrollo con Angular para aplicaciones modernas y escalables.',
+    icon: 'icon-ts.svg', // Imagen en /public/assets/icon-typescript.svg
+  },
+  {
+    title: 'Desarrollo Seguro',
+    description: 'Implementación de estándares de seguridad como ISO 27001.',
+    icon: 'icon-secure-development.svg', // Imagen en /public/assets/icon-security.svg
+  },
+];
+---
+
+<section class="py-20 bg-gray-100">
+  <div class="container mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-12">Mis Habilidades</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {features.map(feature => (
+        <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+          <img src={`/assets/${feature.icon}`} alt={feature.title} class="w-16 h-16 mx-auto mb-4">
+          <h3 class="text-xl font-semibold mb-2">{feature.title}</h3>
+          <p>{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

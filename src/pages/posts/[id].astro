@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+// Obtener todas las rutas estáticas para los posts
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post }
+  }));
+}
+
+// Obtener los datos del post actual basado en el 'id'
+const { post } = Astro.props;
+
+if (!post) {
+  throw new Error(`Post no encontrado para el id: ${Astro.params.id}`);
+}
+---
+
+<BlogLayout>
+  <article class="max-w-3xl mx-auto px-4 py-12">
+    <!-- Título del post -->
+    <h1 class="text-4xl font-bold text-gray-800 mb-6">{post.data.title}</h1>
+
+    <!-- Descripción del post -->
+    <p class="text-xl text-gray-600 mb-4">{post.data.description}</p>
+
+    <!-- Fecha de publicación -->
+    <small class="text-gray-500 mb-12 block">Publicado el {post.data.publishDate}</small>
+
+    <!-- Renderizar el contenido HTML del post -->
+    <div class="prose prose-lg prose-indigo max-w-none" set:html={post.body}></div>
+  </article>
+</BlogLayout>

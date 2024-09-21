@@ -1,0 +1,20 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  buttonLabel: string;
+  backgroundImage: string;
+}
+
+const { title, subtitle, buttonLabel, backgroundImage }: Props = Astro.props;
+---
+
+<section class="relative bg-cover bg-center h-screen text-white" style={`background-image: url(/assets/${backgroundImage})`}>
+  <div class="flex items-center justify-center h-full bg-black bg-opacity-50">
+    <div class="text-center">
+      <h1 class="text-5xl font-bold animate-fadeInUp mb-4">{title}</h1>
+      <p class="text-lg mb-6 animate-fadeInUp delay-150">{subtitle}</p>
+      <a href="/blog" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-full text-white font-semibold animate-fadeInUp delay-300">{buttonLabel}</a>
+    </div>
+  </div>
+</section>

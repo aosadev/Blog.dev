@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '../layouts/BlogLayout.astro';
+import PostCard from '../components/PostCard.astro';
+
+// Obtener la colección de posts
+const posts = await getCollection('posts');
+---
+
+<BlogLayout>
+  <!-- Sección con la imagen de fondo -->
+  <section class="bg-cover bg-center h-screen text-white flex items-center justify-center" style="background-image: url('/assets/hero-background.webp');">
+    <div class="text-center bg-black bg-opacity-50 p-8 rounded">
+      <h1 class="text-5xl font-bold mb-8">Bienvenido a mi Blog</h1>
+      <p class="text-lg mb-6">Aquí comparto artículos sobre tecnología y desarrollo web.</p>
+    </div>
+  </section>
+
+  <!-- Sección de Posts -->
+  <section class="container mx-auto py-10">
+    {posts.length > 0 ? (
+      <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {posts.map((post) => (
+          <li class="bg-white shadow-lg rounded-lg p-6">
+            <PostCard
+              title={post.data.title}
+              description={post.data.description} 
+              publishDate={post.data.publishDate}
+              id={post.id} 
+            />
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="text-center text-gray-600">No hay posts disponibles.</p>
+    )}
+  </section>
+</BlogLayout>
+
